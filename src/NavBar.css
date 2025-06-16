@@ -1,0 +1,29 @@
+#NavContainer {
+  max-width: none !important;
+  width: 70vw;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+}
+
+@media (max-width: 890px) {
+  #NavContainer,
+  Nav {
+    width: 100vw !important;
+    margin: 0 !important; /* Remove margin to avoid left/right space */
+    padding: 0 !important;
+  }
+  #bootStarpNav {
+    padding: 0 !important;
+  }
+}
+
+@media (max-width: 570px) {
+  #bootStarpNav {
+    flex-direction: column !important;
+  }
+}
+.NavLinks {
+  text-decoration: none;
+}

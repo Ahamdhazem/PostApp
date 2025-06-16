@@ -1,0 +1,9 @@
+#AppContainer {
+  background: rgb(227 232 239);
+}
+#NavBar {
+  width: 100vw;
+}
+button {
+  cursor: pointer;
+}

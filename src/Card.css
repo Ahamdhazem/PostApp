@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+#CardContainer {
+  width: 55vw !important;
+}
+#UserName_Img {
+  padding:10px;
+}
+@media (max-width: 567px) {
+  #CardContainer {
+    width: 100vw !important;
+    max-height: none !important;
+    /* margin: 0 !important; Remove margin to avoid left/right space */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+#PostImageContainer {
+  padding: 0 !important;
+}
+#wrapContainer {
+  overflow: none !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+.tage {
+  margin-left: 1em;
+  padding: 0.2% 0.5%;
+  background-color: #b0b6cbe0;
+  border-radius: 25px;
+}

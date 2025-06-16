@@ -1,0 +1,16 @@
+:root {
+  background-color: rgb(227 232 239);
+  background: rgb(227 232 239);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: rgb(227 232 239) !important;
+}
+body,
+html {
+  overflow-x: hidden;
+}
