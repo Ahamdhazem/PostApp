@@ -24,7 +24,7 @@ export default function AddUpdatePostModal({
   const [status, setStatus] = useState();
   const [path, setPath] = useState();
   useEffect(() => {
-    console.log("update Modale ", post);
+  
     if (post && post.id) {
       setMessage("Post Updated Successfully");
     } else {

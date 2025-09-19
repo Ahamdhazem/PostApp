@@ -1,17 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Stack, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import UserImage from "../../assets/Images/defaultuser.png";
 import { useOutletContext } from "react-router-dom";
 import defaultImage from "../../assets/Images/defaultuser.png";
-export default function Post({ post, handelAddUpdateModal }) {
-
+import ConformationModal from "../../Modals/DeleteModal";
+import axios from "axios";
+import CustomAlert from "../Alerts/CustomAlert";
+import CustomSpinner from "../Snippers/CustomSpinner";
+import DeleteModal from "../../Modals/DeleteModal";
+export default function Post({ post, handelAddUpdateModal, setDeleted }) {
   const { token, user } = useOutletContext();
   const {
     profile_image,
     username,
     id: userid,
   } = post?.author || { profile_image: defaultImage, username: "", id: 0 };
+
+  //DeleteModal({ show, hideModal, deleted, postId })
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   return (
     <Card className="post my-5 mx-0 shadow-lg">
       <Stack
@@ -51,7 +59,11 @@ export default function Post({ post, handelAddUpdateModal }) {
               {" "}
               Update
             </Button>
-            <Button className="d-flex" variant="danger">
+            <Button
+              className="d-flex"
+              variant="danger"
+              onClick={() => setShowDeleteModal(true)}
+            >
               Delete
             </Button>
           </Stack>
@@ -79,6 +91,13 @@ export default function Post({ post, handelAddUpdateModal }) {
       >
         <b> Comments({post?.comments_count})</b>
       </Link>
+      <DeleteModal
+        // { show, hideModal, setDeleted, postId }
+        show={showDeleteModal}
+        hideModal={setShowDeleteModal}
+        setDeleted={setDeleted}
+        postId={post.id}
+      />
     </Card>
   );
 }

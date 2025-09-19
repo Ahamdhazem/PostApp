@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Container, Stack, Button, Card } from "react-bootstrap";
 import { Link, useOutletContext } from "react-router-dom";
 import "../../GlobalStyle.css";
@@ -10,7 +10,8 @@ import CustomSpinner from "../../Components/Snippers/CustomSpinner";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import AddUpdatePostModal from "../../Modals/AddUpdatePostModal";
 import Post from "../../Components/Post/Post";
-
+import CustomAlert from "../../Components/Alerts/CustomAlert";
+import ConformationModal from "../../Modals/DeleteModal";
 export default function Home() {
   const { token, user } = useOutletContext();
   const [post, setPosts] = useState();
@@ -18,14 +19,13 @@ export default function Home() {
   const [hover, setHover] = useState(false);
   const [showAddUpdate, setShowAddUpdate] = useState(false);
   const [updatePost, setUpdatePost] = useState(null);
-
+  const [deleted, setDeleted] = useState(false);
   const handelAddUpdateModal = (p = null) => {
     setShowAddUpdate(true);
     if (p) {
       setUpdatePost(p);
     } else setUpdatePost(null);
   };
-  useEffect(() => {}, [updatePost]);
   const [AddButtonClass, setAddButtonClass] = useState();
   useEffect(() => {
     setAddButtonClass(
@@ -52,92 +52,18 @@ export default function Home() {
       }
     };
     getPosts();
-  }, [showAddUpdate]);
+  }, [showAddUpdate, deleted]);
 
   let PostElement = (
     <Container id="PostsContainer">
       {(post || []).map((p) => {
-        console.log(p);
-        // console.log(user.id);
-        const { profile_image, username, id: userid } = p.author;
-
         return (
-          //  margin: 2rem 0;
-          // <Card key={p?.id} className="post my-5 mx-0 shadow-lg">
-          //   <Stack
-          //     className="PostHeader border-bottom  border-1 justify-content-between"
-          //     direction="horizontal"
-          //   >
-          //     <Stack direction="horizontal" gap={2}>
-          //       <Link
-          //         to={`/${userid}`}
-          //         id="userLink"
-          //         className="d-flex gap-1   align-items-center  text-decoration-none"
-          //       >
-          //         <img
-          //           style={{
-          //             width: "3vw",
-          //             height: "3vw",
-          //           }}
-          //           src={
-          //             Object.keys(profile_image).length > 0
-          //               ? profile_image
-          //               : UserImage
-          //           }
-          //         ></img>
-          //         <b>{username}</b>
-          //       </Link>
-          //     </Stack>
-          //     {token && user.id == p.author.id && (
-          //       <Stack gap={2} direction="horizontal">
-          //         <Button
-          //           className="d-flex"
-          //           variant="primary"
-          //           onClick={() => handelAddUpdateModal(p)}
-          //         >
-          //           {" "}
-          //           Update
-          //         </Button>
-          //         <Button className="d-flex" variant="danger">
-          //           Delete
-          //         </Button>
-          //       </Stack>
-          //     )}
-          //   </Stack>
-          //   {/* <hr /> */}
-
-          //   <Card.Img
-          //     variant="top"
-          //     src={p.image}
-          //     className="PostImage custom-card-img px-2    "
-          //   />
-          //   <Stack className="PostFooter  border-bottom mx-auto  ">
-          //     <Card.Body>
-          //       <Card.Title>
-          //         {" "}
-          //         <h4>{p.title}</h4>{" "}
-          //       </Card.Title>
-          //       <Card.Text>{p.body}</Card.Text>
-          //     </Card.Body>
-          //   </Stack>
-          //   <Link to={"Comments"} className="m-2 text-decoration-none">
-          //     <b> Comments({p.comments_count})</b>
-          //   </Link>
-          // </Card>
-
           <Post
-            key={post?.id}
+            key={p.id}
             post={p}
-            // token={token}
-            // loginUser={user?.id || -1}
             handelAddUpdateModal={handelAddUpdateModal}
+            setDeleted={setDeleted}
           />
-          // <Post
-          //   id={p?.id}
-          //   post={p}
-          //   token={token}
-          //   currentUserID={loginUser?.id || -1}
-          // />
         );
       })}
     </Container>

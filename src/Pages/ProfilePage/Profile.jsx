@@ -23,7 +23,7 @@ export default function Profile() {
   const [AddButtonClass, setAddButtonClass] = useState(false);
 
   const [showModel, setShowModel] = useState(false);
-
+  const [deleted, setDeleted] = useState();
   // const [post, setPost] = useState(false);
   const handelAddUpdateModal = (p = null) => {
     setShowAddUpdate(true);
@@ -44,13 +44,10 @@ export default function Profile() {
 
             return (
               <Post
-                //Home.jsx
                 key={p?.id}
                 post={p}
-                // token={token}
-                // loginUser={user?.id || -1}
                 handelAddUpdateModal={handelAddUpdateModal}
-
+                setDeleted={setDeleted}
               />
             );
           })}
@@ -104,7 +101,7 @@ export default function Profile() {
     console.log(posts);
 
     console.log("posts", posts);
-  }, [userid, showAddUpdate, token, user]);
+  }, [userid, showAddUpdate, token, user, deleted]);
 
   return (
     <>
