@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Container, Stack, Button, Card } from "react-bootstrap";
 import { Link, useOutletContext } from "react-router-dom";
 import "../../GlobalStyle.css";
-import UserImage from "../../assets/Images/defaultuser.png";
 import "./Home.css";
-import "../../Components/Post/Post.css";
+// import "../../Components/Post/Post.css";
+import "../../Components/Post/post.css";
 import axios from "axios";
 import CustomSpinner from "../../Components/Snippers/CustomSpinner";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import AddUpdatePostModal from "../../Modals/AddUpdatePostModal";
 import Post from "../../Components/Post/Post";
-import AddNewPost from "../../Modals/AddUpdatePostModal";
-import AddPostButton from "../../Components/AddPostButton/AddPostButton";
+
 export default function Home() {
   const { token, user } = useOutletContext();
   const [post, setPosts] = useState();
