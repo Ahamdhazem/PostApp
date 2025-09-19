@@ -1,0 +1,23 @@
+.post {
+  /* margin: 2rem 0; */
+}
+.PostHeader {
+  padding: 0.5rem;
+  /* border-bottom: 1px solid black; */
+  margin-bottom: 0.5rem;
+}
+#userLink img {
+  border-radius: 50%;
+  width: 3vw;
+}
+
+.PostImage {
+  /* border-radius: 20px; */
+}
+
+.PostFooter {
+  width: 97%;
+}
+.trans-3 {
+  transition: all 3s;
+}
