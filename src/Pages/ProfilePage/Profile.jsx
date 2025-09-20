@@ -7,6 +7,7 @@ import dfultProfileImage from "../../assets/Images/defaultuser.png";
 import Post from "../../Components/Post/Post";
 import AddPostButton from "../../Components/AddPostButton/AddPostButton";
 import AddUpdatePostModal from "../../Modals/AddUpdatePostModal";
+import { Row, Col } from "react-bootstrap";
 export default function Profile() {
   const { userid } = useParams();
   const [loding, setLoading] = useState(false);
@@ -43,12 +44,16 @@ export default function Profile() {
             // { post, token, loginUser, handelAddUpdateModal }
 
             return (
-              <Post
-                key={p?.id}
-                post={p}
-                handelAddUpdateModal={handelAddUpdateModal}
-                setDeleted={setDeleted}
-              />
+              <Row className="justify-content-center">
+                <Col xs={12} md={10} lg={9}>
+                  <Post
+                    key={p?.id}
+                    post={p}
+                    handelAddUpdateModal={handelAddUpdateModal}
+                    setDeleted={setDeleted}
+                  />
+                </Col>
+              </Row>
             );
           })}
       </Container>
@@ -107,12 +112,12 @@ export default function Profile() {
     <>
       <CustomSpinner show={loding} />
       <Container className="mt-5">
-        <Container className="d-flex align-items-center  justify-content-around gap-3">
+        <Container className="d-flex align-items-center  flex-column flex-sm-row  justify-content-start gap-3">
           <img
-            className=" rounded-circle  align-self-center"
+            className=" rounded-circle  align-self-center "
             style={{
-              width: "15vw",
-              height: "15vw",
+              width: "15rem",
+              height: "15rem",
             }}
             src={
               currentUser
@@ -124,11 +129,11 @@ export default function Profile() {
               // currentUser?.profile_image || dfultProfileImage
             }
           />
-          <Stack className="align-self-center ">
+          <Stack className="align-self-center   ">
             <h4> Name: {currentUser?.name}</h4>
             <h4> UserName: {currentUser?.username}</h4>
           </Stack>
-          <Stack className="align-self-center">
+          <Stack className="align-self-center ">
             <h4>Posts Count: {currentUser?.posts_count}</h4>
             <h4>Comment Count: {currentUser?.comments_count}</h4>
           </Stack>

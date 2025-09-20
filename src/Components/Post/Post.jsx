@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Stack, Button } from "react-bootstrap";
+import { Card, Stack, Button, Row, Col, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import UserImage from "../../assets/Images/defaultuser.png";
 import { useOutletContext } from "react-router-dom";
@@ -21,7 +21,9 @@ export default function Post({ post, handelAddUpdateModal, setDeleted }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   return (
-    <Card className="post my-5 mx-0 shadow-lg">
+    // <Row className="justify-content-center">
+    //   <Col xs={12} md={8} lg={6}>
+    <Card className="post my-5 mx-0 shadow-lg ">
       <Stack
         className="PostHeader border-bottom  border-1 justify-content-between"
         direction="horizontal"
@@ -34,8 +36,8 @@ export default function Post({ post, handelAddUpdateModal, setDeleted }) {
           >
             <img
               style={{
-                width: "3vw",
-                height: "3vw",
+                width: "3rem",
+                height: "3rem",
               }}
               src={
                 // Object.keys(profile_image).length > 0
@@ -49,33 +51,74 @@ export default function Post({ post, handelAddUpdateModal, setDeleted }) {
         </Stack>
 
         {token && user?.id == userid && (
-          <Stack gap={2} direction="horizontal">
-            <br />
-            <Button
-              className="d-flex"
-              variant="primary"
-              onClick={() => handelAddUpdateModal(post)}
-            >
-              {" "}
-              Update
-            </Button>
-            <Button
-              className="d-flex"
-              variant="danger"
-              onClick={() => setShowDeleteModal(true)}
-            >
-              Delete
-            </Button>
-          </Stack>
+          <Row>
+            <Col xs={6} className="d-none d-md-flex gap-2">
+              <Button
+                // className="d-flex"
+
+                variant="primary"
+                onClick={() => handelAddUpdateModal(post)}
+              >
+                {" "}
+                Update
+              </Button>
+              <Button
+                // className="d-flex"
+
+                variant="danger"
+                onClick={() => setShowDeleteModal(true)}
+              >
+                Delete
+              </Button>
+            </Col>
+
+            <Col xs={3} className="d-md-none" size="xs">
+              <Dropdown>
+                <Dropdown.Toggle
+                  id="post-actions-dropdown"
+                  size="sm"
+                  as="button"
+                  className="btn btn-primary btn-sm"
+                  bsPrefix="btn"
+                >
+                  <i class="bi bi-three-dots-vertical" />
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className="">
+                  <Dropdown.Item>
+                    <Button
+                      // className="d-flex"
+
+                      variant="primary"
+                      onClick={() => handelAddUpdateModal(post)}
+                    >
+                      {" "}
+                      Update
+                    </Button>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Button
+                      // className="d-flex"
+
+                      variant="danger"
+                      onClick={() => setShowDeleteModal(true)}
+                    >
+                      Delete
+                    </Button>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+          </Row>
         )}
       </Stack>
-      <hr />
 
       <Card.Img
         variant="top"
         src={post?.image}
         className="PostImage custom-card-img px-2    "
       />
+
       <Stack className="PostFooter  border-bottom mx-auto  ">
         <Card.Body>
           <Card.Title>
@@ -99,5 +142,7 @@ export default function Post({ post, handelAddUpdateModal, setDeleted }) {
         postId={post.id}
       />
     </Card>
+    //   </Col>
+    // </Row>
   );
 }

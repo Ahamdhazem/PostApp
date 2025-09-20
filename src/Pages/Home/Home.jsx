@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from "react";
-import { Container, Stack, Button, Card } from "react-bootstrap";
+import { Container, Stack, Button, Card ,Row,Col} from "react-bootstrap";
 import { Link, useOutletContext } from "react-router-dom";
 import "../../GlobalStyle.css";
 import "./Home.css";
@@ -55,22 +55,36 @@ export default function Home() {
   }, [showAddUpdate, deleted]);
 
   let PostElement = (
+    // <Container id="PostsContainer " className="w-sm-100 w-md-50 w-lg-50">
+    //   {(post || []).map((p) => {
+    //     return (
+    //       <Post
+    //         key={p.id}
+    //         post={p}
+    //         handelAddUpdateModal={handelAddUpdateModal}
+    //         setDeleted={setDeleted}
+    //       />
+    //     );
+    //   })}
+    // </Container>
     <Container id="PostsContainer">
-      {(post || []).map((p) => {
-        return (
-          <Post
-            key={p.id}
-            post={p}
-            handelAddUpdateModal={handelAddUpdateModal}
-            setDeleted={setDeleted}
-          />
-        );
-      })}
+      <Row className="justify-content-center">
+        <Col xs={12} md={10} lg={9}>
+          {(post || []).map((p) => (
+            <Post
+              key={p.id}
+              post={p}
+              handelAddUpdateModal={handelAddUpdateModal}
+              setDeleted={setDeleted}
+            />
+          ))}
+        </Col>
+      </Row>
     </Container>
   );
 
   return (
-    <>
+    <Container>
       {" "}
       <CustomSpinner show={loading} />
       {PostElement}
@@ -82,6 +96,6 @@ export default function Home() {
         setShowModal={setShowAddUpdate}
         post={updatePost}
       />
-    </>
+    </Container>
   );
 }
