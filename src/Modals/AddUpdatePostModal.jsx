@@ -24,7 +24,6 @@ export default function AddUpdatePostModal({
   const [status, setStatus] = useState();
   const [path, setPath] = useState();
   useEffect(() => {
-  
     if (post && post.id) {
       setMessage("Post Updated Successfully");
     } else {
@@ -96,8 +95,8 @@ export default function AddUpdatePostModal({
     } finally {
       setLoding(false);
       setShowAlert(true);
+      setShowModal(false);
       setTimeout(() => {
-        setShowModal(false);
         setShowAlert(false);
       }, 2000);
     }
@@ -160,14 +159,15 @@ export default function AddUpdatePostModal({
             Save Changes
           </Button>
         </Modal.Footer>
-        <CustomAlert
-          variant={status >= 200 && status <= 300 ? "success" : "danger"}
-          Message={message}
-          showAlert={showAlert}
-          setShowAlert={setShowAlert}
-        />
+
         <CustomSpinner show={loding} />
       </Modal>
+      <CustomAlert
+        variant={status >= 200 && status <= 300 ? "success" : "danger"}
+        Message={message}
+        showAlert={showAlert}
+        setShowAlert={setShowAlert}
+      />
       <AddPostButton
         setHover={setHover}
         AddButtonClass={AddButtonClass}

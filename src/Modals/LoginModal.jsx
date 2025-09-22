@@ -91,7 +91,7 @@ export default function LoginModal({
       <CustomAlert
         variant={errorMessage ? "danger" : "success"}
         Message={
-          errorMessage ? `error: ${errorMessage}` : "User Rejester SuccessFuly"
+          errorMessage ? `error: ${errorMessage}` : "User Login  SuccessFuly"
         }
         showAlert={showAlert}
         setShowAlert={setShowAlert}

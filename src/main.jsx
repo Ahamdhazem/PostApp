@@ -12,6 +12,7 @@ import { Navbar } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import Home from "./Pages/Home/Home.jsx";
 import Comments from "./Pages/Comments/Comments.jsx";
+import NotFound from "./Pages/NotFound.jsx";
 
 function Layout() {
   return (
@@ -35,7 +36,11 @@ const router = createBrowserRouter([
       },
       { path: "/Profile", element: <Profile /> },
       { path: "/:userid", element: <Profile /> },
-      { path: "/Comments/:postID", element: <Comments /> },
+      { path: "/:userid/:postID", element: <Comments /> },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
     ],
   },
 ]);

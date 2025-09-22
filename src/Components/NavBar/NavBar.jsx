@@ -44,7 +44,13 @@ export default function NavBar({ token, setToken, user, setUser }) {
             direction="horizontal"
             style={{ width: "70%" }}
           >
-            <h1>PostApp</h1>
+            <h1>
+              <Link to={"/"} as="h1" className="text-decoration-none text-dark">
+                {" "}
+                PostApp
+              </Link>
+            </h1>
+
             <Link to={"/"}>
               {" "}
               <Button>Home</Button>{" "}
@@ -56,7 +62,12 @@ export default function NavBar({ token, setToken, user, setUser }) {
           </Stack>
           {/* className="d-md-none" */}
           <Stack className="d-md-none">
-            <h1>PostApp</h1>
+            <h1>
+              <Link to={"/"}>
+                {" "}
+                <h1>PostApp</h1>
+              </Link>
+            </h1>
 
             {token && (
               <Dropdown>
@@ -108,8 +119,12 @@ export default function NavBar({ token, setToken, user, setUser }) {
                     width: "3rem",
                     height: "3rem",
                   }}
+                  // src={
+                  //   user?.profile_image ? user?.profile_image : defaultUser
+                  // }
                   src={
-                    Object.keys(user?.profile_image).length > 0
+                    typeof user?.profile_image === "string" &&
+                    user.profile_image.trim() !== ""
                       ? user.profile_image
                       : defaultUser
                   }

@@ -40,10 +40,10 @@ export default function Post({ post, handelAddUpdateModal, setDeleted }) {
                 height: "3rem",
               }}
               src={
-                // Object.keys(profile_image).length > 0
-                //   ? profile_image
-                //   : UserImage
-                profile_image
+                typeof user?.profile_image === "string" &&
+                user.profile_image.trim() !== ""
+                  ? user.profile_image
+                  : defaultImage
               }
             ></img>
             <b>{username}</b>
@@ -112,12 +112,13 @@ export default function Post({ post, handelAddUpdateModal, setDeleted }) {
           </Row>
         )}
       </Stack>
-
-      <Card.Img
-        variant="top"
-        src={post?.image}
-        className="PostImage custom-card-img px-2    "
-      />
+      {typeof post?.image === "string" && post?.image !== "" && (
+        <Card.Img
+          variant="top"
+          src={post?.image}
+          className="PostImage custom-card-img px-2    "
+        />
+      )}
 
       <Stack className="PostFooter  border-bottom mx-auto  ">
         <Card.Body>
@@ -128,8 +129,9 @@ export default function Post({ post, handelAddUpdateModal, setDeleted }) {
           <Card.Text>{post?.body}</Card.Text>
         </Card.Body>
       </Stack>
+      {/* /:userid/:postID */}
       <Link
-        to={handelAddUpdateModal && `Comments/${post?.id}`}
+        to={`/${post?.author?.id}/${post?.id}`}
         className="m-2 text-decoration-none"
       >
         <b> Comments({post?.comments_count})</b>
@@ -139,7 +141,7 @@ export default function Post({ post, handelAddUpdateModal, setDeleted }) {
         show={showDeleteModal}
         hideModal={setShowDeleteModal}
         setDeleted={setDeleted}
-        postId={post.id}
+        postId={post?.id}
       />
     </Card>
     //   </Col>

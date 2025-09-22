@@ -43,7 +43,7 @@ export default function Comments() {
         .map((comment) => {
           return (
             <Stack
-              key={comment.id}
+              key={comment?.id}
               className="border px-3 rounded-5  pt-3 mb-3"
             >
               <Stack direction="horizontal" gap={2} className="mb-3">
